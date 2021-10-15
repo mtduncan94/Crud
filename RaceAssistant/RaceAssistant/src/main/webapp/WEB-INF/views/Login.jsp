@@ -35,7 +35,7 @@ h1 {
 	<div class="container">
 	<h1>Welcome To Race Assistant</h1>
 	<div style="color:red; font-weight: bold; margin: 30px 0px;">${SPRING_SECURITY_LAST_EXCEPTION.message}</div>
-		<form class="form-signin" method="post" action="/RaceAssistant/login">
+		<form class="form-signin" method="post" action="/RaceAssistant/">
 			<h2 class="form-signin-heading">Please sign in</h2>
 			<p>
 				<label for="username" class="sr-only">Username</label> <input
