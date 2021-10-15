@@ -26,7 +26,7 @@ public class MainController {
 	}
 
 	// home page controller
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = "/")
 	public ModelAndView showRaces(ModelAndView model) {
 
 		List<RaceDetails> listRaces = rs.listAll();
@@ -64,7 +64,7 @@ public class MainController {
 	}
 
 	// login
-	@RequestMapping(value="/login", method=RequestMethod.GET)
+	@RequestMapping("/login")
 	public String login() {
 		return "Login";
 	}
