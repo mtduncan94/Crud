@@ -26,7 +26,7 @@ public class MainController {
 	}
 
 	// home page controller
-	@RequestMapping(value = "/")
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView showRaces(ModelAndView model) {
 
 		List<RaceDetails> listRaces = rs.listAll();
