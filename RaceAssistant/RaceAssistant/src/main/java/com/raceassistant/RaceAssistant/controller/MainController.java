@@ -64,7 +64,7 @@ public class MainController {
 	}
 
 	// login
-	@RequestMapping("/login")
+	@RequestMapping(value="/login", method=RequestMethod.GET)
 	public String login() {
 		return "Login";
 	}
