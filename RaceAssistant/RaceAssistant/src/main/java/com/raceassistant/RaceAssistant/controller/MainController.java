@@ -63,6 +63,11 @@ public class MainController {
 		return model;
 	}
 
+	// login
+	@RequestMapping("/login")
+	public String login() {
+		return "Login";
+	}
 
 	// save controller
 	@RequestMapping(value = "/save")
