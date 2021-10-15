@@ -64,10 +64,10 @@ public class MainController {
 	}
 
 	// login
-	//@RequestMapping("/login")
-	//public String login() {
-		//return "Login";
-	//}
+	@RequestMapping("/login")
+	public String login() {
+		return "Login";
+	}
 
 	// save controller
 	@RequestMapping(value = "/save")
