@@ -1,5 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,7 +26,7 @@
 			style="font-size: 60px; color: red; background-color: black; text-align: center; font-family: papyrus, fantasy;">Welcome
 			To Race Assistant</h1>
 		<div style="color: red; font-weight: bold; margin: 30px 0px;">${SPRING_SECURITY_LAST_EXCEPTION.message}</div>
-		<form class="form-signin" method="post" action="/login">
+		<form class="form-signin" method="post" action="/RaceAssistant/login">
 			<h2 class="form-signin-heading">Please sign in</h2>
 			<p>
 				<label for="username" class="sr-only">Username</label> <input
@@ -44,6 +46,10 @@
 			<button style="background-color:black; border:black" class="btn btn-lg btn-primary btn-block" type="submit"
 				title="Click To Sign In">Sign in</button>
 		</form>
+		
+		<sec:authorize access="hasRole('ADMIN')">
+			<a href="admin" title="Edit/Add Race">Admin Login</a>
+		</sec:authorize>
 	</div>
 </body>
 </html>
