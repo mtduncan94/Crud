@@ -26,8 +26,17 @@ public class MainController {
 	}
 
 	// home page controller
+	@RequestMapping(value = "/admin")
+	public ModelAndView adminView(ModelAndView model) {
+
+		List<RaceDetails> listRaces = rs.listAll();
+		model.addObject("listRaces", listRaces);
+		model.setViewName("admin");
+		return model;
+	}
+
 	@RequestMapping(value = "/")
-	public ModelAndView showRaces(ModelAndView model) {
+	public ModelAndView userView(ModelAndView model) {
 
 		List<RaceDetails> listRaces = rs.listAll();
 		model.addObject("listRaces", listRaces);
@@ -39,7 +48,7 @@ public class MainController {
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
 	public ModelAndView deleteRace(HttpServletRequest request) {
 		rs.delete(Integer.parseInt(request.getParameter("ID")));
-		return new ModelAndView("redirect:/");
+		return new ModelAndView("redirect:/admin");
 	}
 
 	// edit
@@ -73,7 +82,7 @@ public class MainController {
 	@RequestMapping(value = "/save")
 	public ModelAndView saveRace(@ModelAttribute RaceDetails rd) {
 		rs.save(rd);
-		return new ModelAndView("redirect:/");
+		return new ModelAndView("redirect:/admin");
 	}
 
 	// home controller
