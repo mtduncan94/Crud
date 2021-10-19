@@ -19,6 +19,7 @@ public class User {
 	private String name;
 	@Column(name = "password")
 	private String password;
+	private String passwordConfirm;
 	@Column(name = "role")
 	private String role;
 	@Column(name = "status")
@@ -68,6 +69,14 @@ public class User {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getPasswordConfirm() {
+		return passwordConfirm;
+	}
+
+	public void setPasswordConfirm(String passwordConfirm) {
+		this.passwordConfirm = passwordConfirm;
 	}
 
 	public String getRole() {
