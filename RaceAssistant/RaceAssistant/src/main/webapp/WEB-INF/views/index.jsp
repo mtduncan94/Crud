@@ -1,7 +1,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 
 
 <html>
@@ -38,6 +39,10 @@ table, th, td {
 				<th>Race Name</th>
 				<th>Track Name</th>
 				<th>Race Date</th>
+				<sec:authorize access="hasRole('ADMIN')">
+					<th>Action</th>
+				</sec:authorize>
+
 			</tr>
 
 			<c:forEach var="Race" items="${listRaces}">
@@ -46,10 +51,46 @@ table, th, td {
 					<td><a title="Click For Details" href="get?ID=${Race.ID}">${Race.raceName}</a></td>
 					<td>${Race.trackName}</td>
 					<td>${Race.raceDate}</td>
+
+					<sec:authorize access="hasRole('ADMIN')">
+						<td><a href="edit?ID=${Race.ID}" title="Click To Edit Race">Edit</a>
+							&nbsp;&nbsp; <a href="delete?ID=${Race.ID}"
+							title="Click To Delete">Delete</a></td>
+					</sec:authorize>
 				</tr>
 			</c:forEach>
 		</table>
 
+		<br>
+		<sec:authorize access="hasRole('ADMIN')">
+			<h2>Add New Race:</h2>
+			<form action="save">
+				<table>
+					<tr>
+						<th>Race Name</th>
+						<th>Track Name</th>
+						<th>Date</th>
+						<th>Action</th>
+					</tr>
+
+					<tr>
+						<td><input type="text" name="raceName" id="raceName"
+							required="" title="Enter Race Name"
+							oninvalid="setCustomValidity('Please Enter Race Name ')"
+							onchange="try{setCustomValidity('')}catch(e){}" />
+						<td><input type="text" name="trackName" id="trackName"
+							required="" title="Enter Track Name"
+							oninvalid="setCustomValidity('Please Enter Track Name ')"
+							onchange="try{setCustomValidity('')}catch(e){}" />
+						<td><input type="date" name="raceDate" id="raceDate"
+							required="" title="Enter Race Date"
+							oninvalid="setCustomValidity('Please Enter Race Date ')"
+							onchange="try{setCustomValidity('')}catch(e){}" />
+						<td><input type="submit" value="Submit New Race" /></td>
+					</tr>
+				</table>
+			</form>
+		</sec:authorize>
 		<br>
 
 		<form:form action="${pageContext.request.contextPath}/logout"
@@ -57,12 +98,8 @@ table, th, td {
 			<input type="submit" value="Logout">
 		</form:form>
 
-		<sec:authorize access="hasRole('ADMIN')">
-			<a href="admin" title="Edit/Add Race">Administrative View</a>
-		</sec:authorize>
-
 	</div>
 
 </body>
 </html>
->
+
