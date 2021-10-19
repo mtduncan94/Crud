@@ -7,13 +7,19 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.raceassistant.RaceAssistant.entity.RaceDetails;
 import com.raceassistant.RaceAssistant.entity.RaceService;
+import com.raceassistant.RaceAssistant.user.User;
+import com.raceassistant.RaceAssistant.user.UserService;
+import com.raceassistant.RaceAssistant.user.UserValidator;
 
 @Controller
 public class MainController {
@@ -21,20 +27,16 @@ public class MainController {
 	private RaceService rs;
 
 	@Autowired
+	private UserService userService;
+	@Autowired
+	private UserValidator userValidator;
+
+	@Autowired
 	public MainController(RaceService rs) {
 		this.rs = rs;
 	}
 
 	// home page controller
-	@RequestMapping(value = "/admin")
-	public ModelAndView adminView(ModelAndView model) {
-
-		List<RaceDetails> listRaces = rs.listAll();
-		model.addObject("listRaces", listRaces);
-		model.setViewName("admin");
-		return model;
-	}
-
 	@RequestMapping(value = "/")
 	public ModelAndView userView(ModelAndView model) {
 
@@ -48,7 +50,7 @@ public class MainController {
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
 	public ModelAndView deleteRace(HttpServletRequest request) {
 		rs.delete(Integer.parseInt(request.getParameter("ID")));
-		return new ModelAndView("redirect:/admin");
+		return new ModelAndView("redirect:/");
 	}
 
 	// edit
@@ -82,7 +84,7 @@ public class MainController {
 	@RequestMapping(value = "/save")
 	public ModelAndView saveRace(@ModelAttribute RaceDetails rd) {
 		rs.save(rd);
-		return new ModelAndView("redirect:/admin");
+		return new ModelAndView("redirect:/");
 	}
 
 	// home controller
@@ -90,4 +92,26 @@ public class MainController {
 	ModelAndView goHome(ModelAndView model) {
 		return new ModelAndView("redirect:/");
 	}
+
+	// Registration
+	@RequestMapping("/register")
+	public String registration(Model model) {
+		model.addAttribute("userForm", new User());
+
+		return "registration";
+	}
+
+	@PostMapping("/register")
+	public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult) {
+		userValidator.validate(userForm, bindingResult);
+
+		if (bindingResult.hasErrors()) {
+			return "registration";
+		}
+
+		userService.save(userForm);
+
+		return "redirect:/";
+	}
+
 }
