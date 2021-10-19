@@ -27,7 +27,7 @@
 			To Race Assistant</h1>
 			
 		
-		<form class="form-signin" method="post" action="/RaceAssistant/login">
+		<form class="form-signin" method="post" action="login">
 			<h2 class="form-signin-heading">Please sign in</h2>
 		<div style="text-align: center; color: red; font-weight: bold; margin: 30px 0px;">${SPRING_SECURITY_LAST_EXCEPTION.message}</div>
 			<p>
