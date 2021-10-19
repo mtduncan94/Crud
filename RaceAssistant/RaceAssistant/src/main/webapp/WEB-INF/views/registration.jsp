@@ -54,6 +54,7 @@
 				class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
 		</form:form>
 
+		<a style="text-align: center; color: black; font-weight: bold;" href="home" title="Go To Login">Cancel</a>	
 	</div>
 
 	<script
