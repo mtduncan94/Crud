@@ -27,7 +27,7 @@
 		<form:form method="POST" modelAttribute="userForm" class="form-signin">
 			<h2 class="form-signin-heading">Create your account:</h2>
 			<spring:bind path="name">
-				<div class="form-group ${status.error ? 'has-error' : ''}">
+				<div style="color:red;font-weight: bold;" class="form-group ${status.error ? 'has-error' : ''}">
 					<form:input type="text" path="name" class="form-control"
 						placeholder="Username" autofocus="true"></form:input>
 					<form:errors path="name"></form:errors>
@@ -35,7 +35,7 @@
 			</spring:bind>
 
 			<spring:bind path="password">
-				<div class="form-group ${status.error ? 'has-error' : ''}">
+				<div style="color:red;font-weight: bold;" class="form-group ${status.error ? 'has-error' : ''}">
 					<form:input type="password" path="password" class="form-control"
 						placeholder="Password"></form:input>
 					<form:errors path="password"></form:errors>
@@ -43,7 +43,7 @@
 			</spring:bind>
 
 			<spring:bind path="passwordConfirm">
-				<div class="form-group ${status.error ? 'has-error' : ''}">
+				<div style="color:red;font-weight: bold;" class="form-group ${status.error ? 'has-error' : ''}">
 					<form:input type="password" path="passwordConfirm"
 						class="form-control" placeholder="Confirm your password"></form:input>
 					<form:errors path="passwordConfirm"></form:errors>
