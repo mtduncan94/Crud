@@ -24,7 +24,7 @@
 <body style="background-color:gray;	margin:0;
 	padding:0;">
 	<div class="container">
-		<form class="form-signin" method="post" action="/RaceAssistant/login">
+		<form class="form-signin" method="post" action="login">
 			<h2 class="form-signin-heading">Please sign in</h2>
 			<div style="text-align: center; color: red; font-weight: bold;">${SPRING_SECURITY_LAST_EXCEPTION.message}</div>
 			<br>
