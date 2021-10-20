@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
+<jsp:include page="header.jsp" />
 
 <!DOCTYPE html>
 <html lang="en">
@@ -18,10 +19,8 @@
 	rel="stylesheet" crossorigin="anonymous">
 </head>
 
-<body style="background-color: gray;">
-	<h1
-		style="font-size: 60px; color: red; background-color: black; text-align: center; font-family: papyrus, fantasy;">Welcome
-		To Race Assistant</h1>
+<body style="background-color: gray;	margin:0;
+	padding:0;">
 	<div class="container">
 
 		<form:form method="POST" modelAttribute="userForm" class="form-signin">
@@ -60,5 +59,7 @@
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<script src="${contextPath}/resources/js/bootstrap.min.js"></script>
+	<br>
+			<footer></footer>
 </body>
 </html>

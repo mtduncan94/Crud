@@ -1,26 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<jsp:include page="header.jsp"/>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Race Detail View</title>
 </head>
-<style>
-body {
-	background-color: gray
-}
 
-table, th, td {
-	border: 3px solid black;
-	cellpadding: 5;
-}
-</style>
-</head>
 <body>
 	<div align="center">
-		<h1>Detailed View</h1>
+		<h1>Race Details:</h1>
 		<form action="home" method="post" modelAttribute="rd">
 			<table>
 				<tr>
@@ -46,5 +37,6 @@ table, th, td {
 			</table>
 		</form>
 	</div>
+	<br><br><footer></footer>
 </body>
 </html>

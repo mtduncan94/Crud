@@ -1,21 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<jsp:include page="header.jsp"/>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
 <title>Edit Race</title>
-<style>
-body {
-	background-color: gray
-}
-
-table, th, td {
-	border: 3px solid black;
-	cellpadding: 5;
-}
-</style>
 </head>
 <body>
 	<div align="center">
@@ -37,10 +28,13 @@ table, th, td {
 				</tr>
 				<tr>
 					<td colspan="2" align="center"><input type="submit"
-						value="Save" /></td>
+						value="Save" />&nbsp;&nbsp;&nbsp;<a style="color: black; font-weight: bold;"
+						href="home" title="Go To Login">Cancel</a></td>
+
 				</tr>
 			</table>
 		</form:form>
 	</div>
+	<br><br><footer></footer>
 </body>
 </html>
