@@ -9,7 +9,8 @@
 <title>Race Detail View</title>
 </head>
 
-<body>
+<body style="position:static;
+	top:0;">
 	<div align="center">
 		<h1>Race Details:</h1>
 		<form action="home" method="post" modelAttribute="rd">

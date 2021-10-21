@@ -28,6 +28,7 @@ footer {
 	background: black;
 	height: 100px;
 	width: 100%;
+	position:static;
 	bottom:0;
 }
 </style>
