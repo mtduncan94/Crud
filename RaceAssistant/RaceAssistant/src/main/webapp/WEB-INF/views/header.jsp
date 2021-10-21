@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-    <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
-	
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,9 +11,10 @@ table, th, td {
 	border: 3px solid black;
 	cellpadding: 5;
 }
+
 body {
-	margin:0;
-	padding:0;
+	margin: 0;
+	padding: 0;
 	background-color: gray;
 }
 
@@ -20,13 +22,13 @@ header {
 	background: black;
 	color: white;
 	text-align: right;
-	
 }
 
 footer {
 	background: black;
 	height: 100px;
 	width: 100%;
+ margin-top: -100px;
 }
 </style>
 <meta charset="ISO-8859-1">
@@ -40,7 +42,7 @@ footer {
 		User: 
 		<sec:authentication property="principal.username" />
 		| <a style="color: white;"
-			href="${pageContext.request.contextPath}/logout">Logout</a> &nbsp;
+				href="${pageContext.request.contextPath}/logout">Logout</a> &nbsp;
 			</sec:authorize>
 	</header>
 
