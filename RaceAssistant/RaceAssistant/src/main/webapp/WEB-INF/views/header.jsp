@@ -28,7 +28,7 @@ footer {
 	background: black;
 	height: 100px;
 	width: 100%;
- margin-top: -100px;
+position:fixed;bottom:0;
 }
 </style>
 <meta charset="ISO-8859-1">
