@@ -23,7 +23,7 @@
 </head>
 <body style="background-color: gray; margin: 0; padding: 0;">
 	<div class="container">
-		<form class="form-signin" method="post" action="login"
+		<form class="form-signin" method="post" action="/RaceAssistant/login"
 			id="form"
 			onsubmit="return confirm('Do you consent to following website guidelines?')">
 			<h2 class="form-signin-heading">Please sign in</h2>

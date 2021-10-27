@@ -7,8 +7,16 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Edit Race</title>
+<link
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
+	crossorigin="anonymous">
+<link
+	href="https://getbootstrap.com/docs/4.0/examples/signin/signin.css"
+	rel="stylesheet" crossorigin="anonymous">
 </head>
-<body>
+<body style="background-color: gray; margin: 0; padding: 0;">
 	<div align="center">
 		<h1>Edit Race</h1>
 		<form:form action="save" method="post" modelAttribute="rd">
@@ -26,14 +34,14 @@
 					<th>Race Date:</th>
 					<td><form:input type="date" path="raceDate" /></td>
 				</tr>
-				<tr>
-					<td colspan="2" align="center"><input type="submit"
+				
+
+				
+			</table><br>
+					<input style="background-color:black; color:white;" type="submit"
 						value="Save" />&nbsp;&nbsp;&nbsp;<a
 						style="color: black; font-weight: bold;" href="home"
-						title="Go To Login">Cancel</a></td>
-
-				</tr>
-			</table>
+						title="Go To Login">Cancel</a>
 		</form:form>
 	</div>
 	<br>

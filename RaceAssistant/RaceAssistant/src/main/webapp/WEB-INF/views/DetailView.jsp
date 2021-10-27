@@ -31,7 +31,7 @@
 					<td>${rd.raceDate}</td>
 				</tr>
 			</table>
-			<br> <input type="submit" value="Exit" title="Go To Home Page" />
+			<br> <input type="submit" style="color:white; background-color:black;" value="Exit" title="Go To Home Page" />
 		</form>
 	</div>
 	<br>

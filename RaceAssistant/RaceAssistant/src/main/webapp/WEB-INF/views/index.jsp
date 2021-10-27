@@ -82,7 +82,7 @@
 						</tr>
 					</thead>
 
-					<tbody>
+					<tbody >
 						<tr>
 							<td><input type="text" name="raceName" id="raceName"
 								required="" title="Enter Race Name"
@@ -96,7 +96,7 @@
 								required="" title="Enter Race Date"
 								oninvalid="setCustomValidity('Please Enter Race Date ')"
 								onchange="try{setCustomValidity('')}catch(e){}" />
-							<td><input type="submit" value="Submit New Race" /></td>
+							<td ><input type="submit" value="Submit New Race" style="color:white; background-color:black;" /></td>
 						</tr>
 					</tbody>
 				</table>
