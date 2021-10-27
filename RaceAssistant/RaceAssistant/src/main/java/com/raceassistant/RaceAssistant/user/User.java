@@ -24,6 +24,7 @@ public class User {
 	private String role;
 	@Column(name = "status")
 	private boolean status;
+	private int failedLoginAttempts;
 
 	public User(int iD, String name, String password, String role, boolean status) {
 		super();
@@ -93,6 +94,14 @@ public class User {
 
 	public void setStatus(boolean status) {
 		this.status = status;
+	}
+
+	public int getFailedLoginAttempts() {
+		return failedLoginAttempts;
+	}
+
+	public void setFailedLoginAttempts(int failedLoginAttempts) {
+		this.failedLoginAttempts = failedLoginAttempts;
 	}
 
 	@Override

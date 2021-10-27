@@ -7,7 +7,7 @@ import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
 @Component
-public class UserValidator implements Validator {
+public class PasswordChangeValidation implements Validator {
 	@Autowired
 	private UserService userService;
 
@@ -19,14 +19,6 @@ public class UserValidator implements Validator {
 	@Override
 	public void validate(Object o, Errors errors) {
 		User user = (User) o;
-
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "NotEmpty");
-		if (user.getName().length() < 6 || user.getName().length() > 32) {
-			errors.rejectValue("name", "Size.userForm.name");
-		}
-		if (userService.findByName(user.getName()) != null) {
-			errors.rejectValue("name", "Duplicate.userForm.name");
-		}
 
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "NotEmpty");
 		if (user.getPassword().length() < 8 || user.getPassword().length() > 32) {
