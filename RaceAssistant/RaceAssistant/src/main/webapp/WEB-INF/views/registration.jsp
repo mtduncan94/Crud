@@ -19,14 +19,14 @@
 	rel="stylesheet" crossorigin="anonymous">
 </head>
 
-<body style="background-color: gray;	margin:0;
-	padding:0;">
+<body style="background-color: gray; margin: 0; padding: 0;">
 	<div class="container">
 
 		<form:form method="POST" modelAttribute="userForm" class="form-signin">
 			<h2 class="form-signin-heading">Create your account:</h2>
 			<spring:bind path="name">
-				<div style="color:red;font-weight: bold;" class="form-group ${status.error ? 'has-error' : ''}">
+				<div style="color: red; font-weight: bold;"
+					class="form-group ${status.error ? 'has-error' : ''}">
 					<form:input type="text" path="name" class="form-control"
 						placeholder="Username" autofocus="true"></form:input>
 					<form:errors path="name"></form:errors>
@@ -34,7 +34,8 @@
 			</spring:bind>
 
 			<spring:bind path="password">
-				<div style="color:red;font-weight: bold;" class="form-group ${status.error ? 'has-error' : ''}">
+				<div style="color: red; font-weight: bold;"
+					class="form-group ${status.error ? 'has-error' : ''}">
 					<form:input type="password" path="password" class="form-control"
 						placeholder="Password"></form:input>
 					<form:errors path="password"></form:errors>
@@ -42,7 +43,8 @@
 			</spring:bind>
 
 			<spring:bind path="passwordConfirm">
-				<div style="color:red;font-weight: bold;" class="form-group ${status.error ? 'has-error' : ''}">
+				<div style="color: red; font-weight: bold;"
+					class="form-group ${status.error ? 'has-error' : ''}">
 					<form:input type="password" path="passwordConfirm"
 						class="form-control" placeholder="Confirm your password"></form:input>
 					<form:errors path="passwordConfirm"></form:errors>
@@ -53,13 +55,14 @@
 				class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
 		</form:form>
 
-		<a style="text-align: center; color: black; font-weight: bold;" href="home" title="Go To Login">Cancel</a>	
+		<a style="text-align: center; color: black; font-weight: bold;"
+			href="home" title="Go To Login">Cancel</a>
 	</div>
 
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<script src="${contextPath}/resources/js/bootstrap.min.js"></script>
 	<br>
-			<footer></footer>
+	<footer></footer>
 </body>
 </html>

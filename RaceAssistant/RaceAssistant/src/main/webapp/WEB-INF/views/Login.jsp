@@ -21,10 +21,11 @@
 	href="https://getbootstrap.com/docs/4.0/examples/signin/signin.css"
 	rel="stylesheet" crossorigin="anonymous">
 </head>
-<body style="background-color:gray;	margin:0;
-	padding:0;">
+<body style="background-color: gray; margin: 0; padding: 0;">
 	<div class="container">
-		<form class="form-signin" method="post" action="login">
+		<form class="form-signin" method="post" action="/RaceAssistant/login"
+			id="form"
+			onsubmit="return confirm('Do you consent to following website guidelines?')">
 			<h2 class="form-signin-heading">Please sign in</h2>
 			<div style="text-align: center; color: red; font-weight: bold;">${SPRING_SECURITY_LAST_EXCEPTION.message}</div>
 			<br>
@@ -45,12 +46,13 @@
 			</p>
 			<button style="background-color: black; border: black"
 				class="btn btn-lg btn-primary btn-block" type="submit"
-				title="Click To Sign In">Sign in</button>
+				title="Click To Sign In" id="login button">Sign In</button>
 		</form>
+
 		<a style="text-align: center; color: black; font-weight: bold;"
 			href="register" title="Registration">Click Here To Register</a>
-		</div>
-			<br>
-			<footer></footer>
+	</div>
+	<br>
+	<footer></footer>
 </body>
 </html>

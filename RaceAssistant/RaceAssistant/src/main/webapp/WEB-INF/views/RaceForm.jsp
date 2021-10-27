@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<jsp:include page="header.jsp"/>
+<jsp:include page="header.jsp" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,13 +28,16 @@
 				</tr>
 				<tr>
 					<td colspan="2" align="center"><input type="submit"
-						value="Save" />&nbsp;&nbsp;&nbsp;<a style="color: black; font-weight: bold;"
-						href="home" title="Go To Login">Cancel</a></td>
+						value="Save" />&nbsp;&nbsp;&nbsp;<a
+						style="color: black; font-weight: bold;" href="home"
+						title="Go To Login">Cancel</a></td>
 
 				</tr>
 			</table>
 		</form:form>
 	</div>
-	<br><br><footer></footer>
+	<br>
+	<br>
+	<footer></footer>
 </body>
 </html>

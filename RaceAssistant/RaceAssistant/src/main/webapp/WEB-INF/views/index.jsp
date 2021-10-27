@@ -20,10 +20,19 @@
 	href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
 <title>Race Assistant</title>
 </head>
-<body style="background-color:gray;	margin:0;
-	padding:0;">
+<body id="top" style="background-color: gray; margin: 0; padding: 0;">
+	<header>
+		<div style="text-align: left;">
+			<sec:authorize access="hasRole('ADMIN')">
+				<a href="#addRace" style="color: white;">Add Race?</a>
+			</sec:authorize>
+		</div>
+	</header>
 	<div align="center">
-<h2>Available Races:</h2>
+		<c:if test="${message != null}">
+			<p style="font-weight: bold; color: MediumSeaGreen">${message}</p>
+		</c:if>
+		<h2>Available Races:</h2>
 
 		<table id="raceTable" class="table">
 			<thead>
@@ -38,31 +47,31 @@
 				</tr>
 			</thead>
 			<tbody>
-			<c:forEach var="Race" items="${listRaces}">
-				<tr>
-					<td>${Race.ID}</td>
-					<td><a style="color: black;" title="Click For Details"
-						href="get?ID=${Race.ID}">${Race.raceName}</a></td>
-					<td>${Race.trackName}</td>
-					<td>${Race.raceDate}</td>
+				<c:forEach var="Race" items="${listRaces}">
+					<tr>
+						<td>${Race.ID}</td>
+						<td><a style="color: black;" title="Click For Details"
+							href="get?ID=${Race.ID}">${Race.raceName}</a></td>
+						<td>${Race.trackName}</td>
+						<td>${Race.raceDate}</td>
 
-					<sec:authorize access="hasRole('ADMIN')">
-						<td><a style="font-weight:bold; color: MediumSeaGreen;" href="edit?ID=${Race.ID}"
-							title="Click To Edit Race">Edit</a>&nbsp;&nbsp;| &nbsp;&nbsp;
-							 <a style="font-weight:bold; color: red;" href="delete?ID=${Race.ID}"
-							
-							onclick="return confirm('Please Confirm Deletion')"
-							title="Click To Delete">Delete</a></td>
-					</sec:authorize>
-				</tr>
-			</c:forEach>
+						<sec:authorize access="hasRole('ADMIN')">
+							<td><a style="font-weight: bold; color: MediumSeaGreen;"
+								href="edit?ID=${Race.ID}" title="Click To Edit Race">Edit</a>&nbsp;&nbsp;|
+								&nbsp;&nbsp; <a style="font-weight: bold; color: red;"
+								href="delete?ID=${Race.ID}"
+								onclick="return confirm('Please Confirm Deletion')"
+								title="Click To Delete">Delete</a></td>
+						</sec:authorize>
+					</tr>
+				</c:forEach>
 			</tbody>
 		</table>
 
 		<br>
 		<sec:authorize access="hasRole('ADMIN')">
 			<h2>Add New Race:</h2>
-			<form action="save">
+			<form action="add" id="addRace">
 				<table>
 					<thead>
 						<tr>
@@ -112,14 +121,18 @@
 	<script type="text/javascript"
 		src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
 	<script type="text/javascript">
-      $(document).ready( function () {
-          $('#raceTable').DataTable({})
-          });
-    </script>
+		$(document).ready(function() {
+			$('#raceTable').DataTable({})
+		});
+	</script>
 
 	<br>
 	<br>
-	<footer></footer>
+	<footer style="position: static;">
+		<div style="text-align: center;">
+			<a href="#top" style="color: white;">Back To Top</a>
+		</div>
+	</footer>
 </body>
 </html>
 

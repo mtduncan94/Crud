@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<jsp:include page="header.jsp"/>
+<jsp:include page="header.jsp" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,8 +9,7 @@
 <title>Race Detail View</title>
 </head>
 
-<body style="position:static;
-	top:0;">
+<body>
 	<div align="center">
 		<h1>Race Details:</h1>
 		<form action="home" method="post" modelAttribute="rd">
@@ -31,13 +30,12 @@
 					<th>Race Date:</th>
 					<td>${rd.raceDate}</td>
 				</tr>
-				<tr>
-					<td colspan="2" align="center"><input type="submit"
-						value="Back" title="Go To Home Page" /></td>
-				</tr>
 			</table>
+			<br> <input type="submit" value="Exit" title="Go To Home Page" />
 		</form>
 	</div>
-	<br><br><footer></footer>
+	<br>
+	<br>
+	<footer></footer>
 </body>
 </html>
