@@ -6,6 +6,10 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,9 +18,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.raceassistant.RaceAssistant.entity.RaceDetails;
 import com.raceassistant.RaceAssistant.entity.RaceService;
+import com.raceassistant.RaceAssistant.user.PasswordChangeValidation;
 import com.raceassistant.RaceAssistant.user.User;
 import com.raceassistant.RaceAssistant.user.UserService;
 import com.raceassistant.RaceAssistant.user.UserValidator;
@@ -48,8 +54,9 @@ public class MainController {
 
 	// Delete Race Controller
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
-	public ModelAndView deleteRace(HttpServletRequest request) {
+	public ModelAndView deleteRace(HttpServletRequest request, RedirectAttributes ra) {
 		rs.delete(Integer.parseInt(request.getParameter("ID")));
+		ra.addFlashAttribute("message", "Race Successfully Deleted");
 		return new ModelAndView("redirect:/");
 	}
 
@@ -80,10 +87,19 @@ public class MainController {
 		return "Login";
 	}
 
+	// add controller
+	@RequestMapping(value = "/add")
+	public ModelAndView addRace(@ModelAttribute RaceDetails rd, RedirectAttributes ra) {
+		rs.save(rd);
+		ra.addFlashAttribute("message", "Race Successfully Added");
+		return new ModelAndView("redirect:/");
+	}
+
 	// save controller
 	@RequestMapping(value = "/save")
-	public ModelAndView saveRace(@ModelAttribute RaceDetails rd) {
+	public ModelAndView saveRace(@ModelAttribute RaceDetails rd, RedirectAttributes ra) {
 		rs.save(rd);
+		ra.addFlashAttribute("message", "Race Successfully Edited");
 		return new ModelAndView("redirect:/");
 	}
 
@@ -112,6 +128,47 @@ public class MainController {
 		userService.save(userForm);
 
 		return "redirect:/";
+	}
+
+	// accountdetails view
+	@RequestMapping("/accountdetails")
+	public String seeAccountDetails() {
+		return "accountdetails";
+	}
+
+	// Change Password
+
+	@RequestMapping("/passwordchange")
+	public ModelAndView changePassword(ModelAndView model) {
+		model.setViewName("passwordchange");
+		return model;
+	}
+
+	@PostMapping("/passwordchange")
+	public String changePassword(HttpServletRequest request, Model model, RedirectAttributes ra) {
+
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		User user = userService.findByName(authentication.getName());
+
+		String oldPassword = request.getParameter("oldPassword");
+		String newPassword = request.getParameter("newPassword");
+		PasswordEncoder pe = new BCryptPasswordEncoder();
+
+		if (oldPassword.equals(newPassword)) {
+			model.addAttribute("message", "New Password Must Be Different Than Old Password");
+
+			return "passwordchange";
+		}
+
+		if (!pe.matches(oldPassword, user.getPassword())) {
+			model.addAttribute("message", "Old Password Is Invalid");
+			return "passwordchange";
+
+		}
+
+		userService.changePassword(user, request.getParameter("newPassword"), request.getParameter("passwordConfirm"));
+		ra.addFlashAttribute("message", "Password Successfully Changed");
+		return "redirect:/accountdetails";
 	}
 
 }
