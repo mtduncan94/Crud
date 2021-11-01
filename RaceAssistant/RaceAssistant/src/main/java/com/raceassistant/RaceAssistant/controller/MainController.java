@@ -118,16 +118,17 @@ public class MainController {
 	}
 
 	@PostMapping("/register")
-	public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult) {
+	public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult, RedirectAttributes ra,Model model) {
 		userValidator.validate(userForm, bindingResult);
 
 		if (bindingResult.hasErrors()) {
+			model.addAttribute("message", "Registration Not Successful, Please Try Again");
 			return "registration";
 		}
 
 		userService.save(userForm);
-
-		return "redirect:/";
+		model.addAttribute("message", "Registration Successful, Please Login");
+		return "Login";
 	}
 
 	// accountdetails view
