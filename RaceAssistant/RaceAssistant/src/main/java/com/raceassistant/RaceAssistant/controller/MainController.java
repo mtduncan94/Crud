@@ -122,7 +122,7 @@ public class MainController {
 		userValidator.validate(userForm, bindingResult);
 
 		if (bindingResult.hasErrors()) {
-			model.addAttribute("message", "Registration Not Successful, Please Try Again");
+			model.addAttribute("message", "Registration Unsuccessful, Please Try Again");
 			return "registration";
 		}
 
