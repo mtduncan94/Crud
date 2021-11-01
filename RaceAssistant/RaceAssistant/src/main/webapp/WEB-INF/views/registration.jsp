@@ -21,7 +21,9 @@
 
 <body style="background-color: gray; margin: 0; padding: 0;">
 	<div class="container">
-
+	<c:if test="${message != null}">
+			<p style= "text-align:center; font-weight: bold; color: Red">${message}</p>
+		</c:if>
 		<form:form method="POST" modelAttribute="userForm" class="form-signin">
 			<h2 class="form-signin-heading">Create your account:</h2>
 			<spring:bind path="name">
