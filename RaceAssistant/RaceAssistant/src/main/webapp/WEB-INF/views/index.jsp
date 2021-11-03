@@ -18,6 +18,9 @@
 <!-- Bootstrap DataTable CSS -->
 <link rel="stylesheet"
 	href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<script src="js/jquery-3.5.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 <title>Race Assistant</title>
 </head>
 <body id="top" style="background-color: gray; margin: 0; padding: 0;">
@@ -82,7 +85,7 @@
 						</tr>
 					</thead>
 
-					<tbody >
+					<tbody>
 						<tr>
 							<td><input type="text" name="raceName" id="raceName"
 								required="" title="Enter Race Name"
@@ -96,7 +99,8 @@
 								required="" title="Enter Race Date"
 								oninvalid="setCustomValidity('Please Enter Race Date ')"
 								onchange="try{setCustomValidity('')}catch(e){}" />
-							<td ><input type="submit" value="Submit New Race" style="color:white; background-color:black;" /></td>
+							<td><input type="submit" value="Submit New Race"
+								style="color: white; background-color: black;" /></td>
 						</tr>
 					</tbody>
 				</table>
@@ -120,12 +124,49 @@
 	<!-- Bootstrap Datatable js -->
 	<script type="text/javascript"
 		src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+
+
+		<div id="myModal" class="modal fade">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Site Guidelines</h5>
+					</div>
+					<div class="modal-body">
+						<p>Do you consent to following website guidelines?</p>
+
+						<div style="text-align: center;">
+							<button type="button"
+								style="background-color: black; color: white"
+								class="btn btn-default" data-dismiss="modal">Yes,
+								Contiue To Site</button>
+							&nbsp;&nbsp;&nbsp; <a style="color: black;"
+								href="${pageContext.request.contextPath}/logout">No, Sign
+								Out</a>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$('#raceTable').DataTable({})
+	 			$('#myModal').modal({
+    		backdrop: 'static',
+    		keyboard: false
+		});
+			if (sessionStorage.getItem('#myModal') !== 'true') {
+				$('#myModal').modal('show');
+				sessionStorage.setItem('#myModal', 'true');
+			} 
+
 		});
 	</script>
-
 	<br>
 	<br>
 	<footer style="position: static;">
