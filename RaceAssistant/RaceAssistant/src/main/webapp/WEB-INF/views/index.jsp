@@ -159,8 +159,8 @@
 	 			$('#myModal').modal({
     		backdrop: 'static',
     		keyboard: false
-		});
-			if (sessionStorage.getItem('#myModal') !== 'true') {
+		}
+		if (sessionStorage.getItem('#myModal') !== 'true') {
 				$('#myModal').modal('show');
 				sessionStorage.setItem('#myModal', 'true');
 			} 
