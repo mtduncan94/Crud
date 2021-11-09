@@ -9,6 +9,7 @@ import com.raceassistant.RaceAssistant.RaceAssistantApplication;
 public class ServletInitializer extends SpringBootServletInitializer {
 
 	@Override
-	protected Spring
+	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+		return application.sources(RaceAssistantApplication.class);
 	}
 }
