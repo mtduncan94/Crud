@@ -9,7 +9,6 @@ import com.raceassistant.RaceAssistant.RaceAssistantApplication;
 public class ServletInitializer extends SpringBootServletInitializer {
 
 	@Override
-	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-		return application.sources(RaceAssistantApplication.class);
+	protected Spring
 	}
 }
