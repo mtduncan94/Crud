@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -22,7 +23,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.raceassistant.RaceAssistant.entity.RaceDetails;
 import com.raceassistant.RaceAssistant.entity.RaceService;
-import com.raceassistant.RaceAssistant.user.PasswordChangeValidation;
 import com.raceassistant.RaceAssistant.user.User;
 import com.raceassistant.RaceAssistant.user.UserService;
 import com.raceassistant.RaceAssistant.user.UserValidator;
@@ -83,7 +83,9 @@ public class MainController {
 
 	// login
 	@RequestMapping("/login")
-	public String login() {
+	public String login(HttpServletRequest request, HttpSession session) {
+		// session.invalidate();
+		// HttpSession newSession = request.getSession();
 		return "Login";
 	}
 
@@ -118,11 +120,12 @@ public class MainController {
 	}
 
 	@PostMapping("/register")
-	public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult, RedirectAttributes ra,Model model) {
+	public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult,
+			RedirectAttributes ra, Model model) {
 		userValidator.validate(userForm, bindingResult);
 
 		if (bindingResult.hasErrors()) {
-			model.addAttribute("message", "Registration Unsuccessful, Please Try Again");
+			model.addAttribute("message", "Registration Not Successful, Please Try Again");
 			return "registration";
 		}
 
