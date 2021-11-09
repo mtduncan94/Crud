@@ -19,6 +19,7 @@ public class User {
 	private String name;
 	@Column(name = "password")
 	private String password;
+	@Column(name= "password_confirm")
 	private String passwordConfirm;
 	@Column(name = "role")
 	private String role;
