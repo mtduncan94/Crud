@@ -10,18 +10,21 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Account Details</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
+  
 </head>
-<body>
+<body style="background-color:gray;">
 	<div align="center">
 		<c:if test="${message != null}">
-			<p class="text-danger"
-				style="font-weight: bold; color: MediumSeaGreen">${message}</p>
+			<p style="font-weight: bold; color: MediumSeaGreen">${message}</p>
 		</c:if>
 		<h2>Account Details:</h2>
-		<table>
-			<tr>
-				<th>Username:</th>
-				<td><sec:authentication property="principal.username" /></td>
+		<div class="container">
+		<table class="table table-sm table-bordered table-hover table-dark w-auto">
+			<tr >
+				<th width="165">Username:</th>
+				<td width="200"><sec:authentication property="principal.username" /></td>
 			<tr>
 			<tr>
 				<th>Account Type:</th>
@@ -29,11 +32,11 @@
 			<tr>
 			<tr>
 				<th>Change Password:</th>
-				<td><a href="passwordchange">Click Here</a></td>
+				<td><a style="color:white" href="passwordchange">Click Here</a></td>
 			<tr>
 		</table>
-		<br> <a href="home" title="Go To Home Page">Exit</a>
-	</div>
+		<br> <a class="btn btn-dark" style="background-color:black;border-color:white;" href="home" title="Go To Home Page">Exit</a>
+	</div></div>
 	<br>
 	<br>
 	<footer></footer>

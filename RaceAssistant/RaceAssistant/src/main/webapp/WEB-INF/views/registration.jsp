@@ -17,20 +17,30 @@
 <link
 	href="https://getbootstrap.com/docs/4.0/examples/signin/signin.css"
 	rel="stylesheet" crossorigin="anonymous">
+<style>
+input {
+	color: white;
+	background-color: black;
+}
+
+::-ms-reveal {
+	filter: invert(100%);
+}
+</style>
 </head>
 
 <body style="background-color: gray; margin: 0; padding: 0;">
 	<div class="container">
-	<c:if test="${message != null}">
-			<p style= "text-align:center; font-weight: bold; color: Red">${message}</p>
+		<c:if test="${message != null}">
+			<p style="text-align: center; font-weight: bold; color: Red">${message}</p>
 		</c:if>
 		<form:form method="POST" modelAttribute="userForm" class="form-signin">
 			<h2 class="form-signin-heading">Create your account:</h2>
 			<spring:bind path="name">
 				<div style="color: red; font-weight: bold;"
 					class="form-group ${status.error ? 'has-error' : ''}">
-					<form:input type="text" path="name" class="form-control"
-						placeholder="Username" autofocus="true"></form:input>
+					<form:input style="background-color:black" type="text" path="name"
+						class="form-control" placeholder="Username" autofocus="true"></form:input>
 					<form:errors path="name"></form:errors>
 				</div>
 			</spring:bind>
@@ -38,8 +48,8 @@
 			<spring:bind path="password">
 				<div style="color: red; font-weight: bold;"
 					class="form-group ${status.error ? 'has-error' : ''}">
-					<form:input type="password" path="password" class="form-control"
-						placeholder="Password"></form:input>
+					<form:input style="background-color:black" type="password"
+						path="password" class="form-control" placeholder="Password"></form:input>
 					<form:errors path="password"></form:errors>
 				</div>
 			</spring:bind>
@@ -47,13 +57,14 @@
 			<spring:bind path="passwordConfirm">
 				<div style="color: red; font-weight: bold;"
 					class="form-group ${status.error ? 'has-error' : ''}">
-					<form:input type="password" path="passwordConfirm"
-						class="form-control" placeholder="Confirm your password"></form:input>
+					<form:input style="background-color:black" type="password"
+						path="passwordConfirm" class="form-control"
+						placeholder="Confirm Your Password"></form:input>
 					<form:errors path="passwordConfirm"></form:errors>
 				</div>
 			</spring:bind>
 
-			<button style="background-color: black; border: black"
+			<button style="background-color: black; border-color: white;"
 				class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
 		</form:form>
 

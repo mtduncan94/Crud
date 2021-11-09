@@ -20,34 +20,48 @@
 <link
 	href="https://getbootstrap.com/docs/4.0/examples/signin/signin.css"
 	rel="stylesheet" crossorigin="anonymous">
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<script src="js/jquery-3.5.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<style>
+input {
+	color: white;
+	background-color: black;
+}
+
+::-ms-reveal {
+	filter: invert(100%);
+}
+</style>
 </head>
 <body style="background-color: gray; margin: 0; padding: 0;">
 	<div class="container">
-		<form class="form-signin" method="post" action="login"
-			id="form"
-			onsubmit="return confirm('Do you consent to following website guidelines?')">
+		<form class="form-signin" method="post" action="/RaceAssistant/login"
+			id="form">
 			<h2 class="form-signin-heading">Please sign in</h2>
 			<c:if test="${message != null}">
-			<p style= "text-align:center; font-weight: bold; color: MediumSeaGreen">${message}</p>
-		</c:if>
+				<p
+					style="text-align: center; font-weight: bold; color: MediumSeaGreen">${message}</p>
+			</c:if>
 			<div style="text-align: center; color: red; font-weight: bold;">${SPRING_SECURITY_LAST_EXCEPTION.message}</div>
 			<br>
 			<p>
 				<label for="username" class="sr-only">Username</label> <input
-					type="text" id="username" name="username" class="form-control"
-					placeholder="Username" required="" autofocus=""
-					title="Enter Username"
+					style="background-color: black" type="text" id="username"
+					name="username" class="form-control" placeholder="Username"
+					required="" autofocus="" title="Enter Username"
 					oninvalid="setCustomValidity('Please Enter Username')"
 					onchange="try{setCustomValidity('')}catch(e){}">
 			</p>
 			<p>
 				<label for="password" class="sr-only">Password</label> <input
-					type="password" id="password" name="password" class="form-control"
-					placeholder="Password" required="" title="Enter Password"
+					style="background-color: black" type="password" id="password"
+					name="password" class="form-control" placeholder="Password"
+					required="" title="Enter Password"
 					oninvalid="setCustomValidity('Please Enter Password')"
 					onchange="try{setCustomValidity('')}catch(e){}">
 			</p>
-			<button style="background-color: black; border: black"
+			<button style="background-color: black; border-color: white;"
 				class="btn btn-lg btn-primary btn-block" type="submit"
 				title="Click To Sign In" id="login button">Sign In</button>
 		</form>
@@ -55,6 +69,8 @@
 		<a style="text-align: center; color: black; font-weight: bold;"
 			href="register" title="Registration">Click Here To Register</a>
 	</div>
+	
+
 	<br>
 	<footer></footer>
 </body>

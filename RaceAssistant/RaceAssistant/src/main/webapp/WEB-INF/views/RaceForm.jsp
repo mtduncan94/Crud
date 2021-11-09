@@ -8,22 +8,20 @@
 <meta charset="ISO-8859-1">
 <title>Edit Race</title>
 <link
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
-	crossorigin="anonymous">
-<link
-	href="https://getbootstrap.com/docs/4.0/examples/signin/signin.css"
-	rel="stylesheet" crossorigin="anonymous">
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body style="background-color: gray; margin: 0; padding: 0;">
 	<div align="center">
 		<h1>Edit Race</h1>
 		<form:form action="save" method="post" modelAttribute="rd">
-			<table>
+			<table
+				class="table table-sm table-bordered table-hover table-dark w-auto">
 				<form:hidden path="ID" />
 				<tr>
-					<th>Race Name:</th>
+					<th width="120">Race Name:</th>
 					<td><form:input path="raceName" /></td>
 				</tr>
 				<tr>
@@ -34,14 +32,17 @@
 					<th>Race Date:</th>
 					<td><form:input type="date" path="raceDate" /></td>
 				</tr>
-				
 
-				
-			</table><br>
-					<input style="background-color:black; color:white;" type="submit"
-						value="Save" />&nbsp;&nbsp;&nbsp;<a
-						style="color: black; font-weight: bold;" href="home"
-						title="Go To Login">Cancel</a>
+
+
+			</table>
+			<br>
+			<div class="btn-group" role="group" aria-label="Basic example">
+				<input style="background-color: black; border-color: white;"
+					class="btn btn-dark" type="submit" value="Save" /> <a
+					style="background-color: black; border-color: white;"
+					class="btn btn-dark" href="home" title="Go To Login">Cancel</a>
+			</div>
 		</form:form>
 	</div>
 	<br>

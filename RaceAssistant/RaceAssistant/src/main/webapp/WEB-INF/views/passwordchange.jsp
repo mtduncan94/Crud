@@ -17,6 +17,13 @@
 <link
 	href="https://getbootstrap.com/docs/4.0/examples/signin/signin.css"
 	rel="stylesheet" crossorigin="anonymous">
+	<style>
+	input {
+  color: white;
+  background-color: black;}
+::-ms-reveal {
+  filter: invert(100%);
+}</style>
 </head>
 
 <body style="background-color: gray; margin: 0; padding: 0;">
@@ -28,17 +35,19 @@
 			<c:if test="${message != null}">
 				<p class="text-danger" style="font-weight: bold;">${message}</p>
 			</c:if>
-			<input type="password" name="oldPassword" class="form-control"
-				placeholder="Old Password" required autofocus />
+			<input style="background-color: black;" type="password" name="oldPassword" class="form-control"
+				placeholder="Old Password" oninvalid="setCustomValidity('Please Enter Current Password ')"
+								onchange="try{setCustomValidity('')}catch(e){}" required autofocus />
 
-			<input type="password" name="newPassword" id="newPassword"
-				class="form-control" placeholder="New Password" required />
+			<input style="background-color: black;" type="password" name="newPassword" id="newPassword"
+				class="form-control" placeholder="New Password" oninvalid="setCustomValidity('Please Enter New Password')"
+								onchange="try{setCustomValidity('')}catch(e){}"required />
 
-			<input type="password" class="form-control" name="passwordConfirm"
+			<input style="background-color: black;" type="password" class="form-control" name="passwordConfirm"
 				placeholder="Confirm New Password" required
 				oninput="checkPasswordMatch(this);" />
 
-			<button style="background-color: black; border: black"
+			<button style="background-color: black; border-color: white"
 				class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
 		</form:form>
 
@@ -51,6 +60,8 @@
 			if (fieldConfirmPassword.value != $("#newPassword").val()) {
 				fieldConfirmPassword
 						.setCustomValidity("Passwords do not match!");
+				 
+					
 			} else {
 				fieldConfirmPassword.setCustomValidity("");
 			}

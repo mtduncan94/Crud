@@ -21,6 +21,24 @@
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <script src="js/jquery-3.5.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
+
+<style>
+#raceTable_previous a {
+	background-color: black;
+	color: white;
+}
+
+#raceTable_next a {
+	background-color: black;
+	color: white;
+}
+
+.pagination>li>a, .pagination>li>span {
+	background-color: black !important;
+	border: 1px solid white !important;
+}
+</style>
+
 <title>Race Assistant</title>
 </head>
 <body id="top" style="background-color: gray; margin: 0; padding: 0;">
@@ -36,76 +54,79 @@
 			<p style="font-weight: bold; color: MediumSeaGreen">${message}</p>
 		</c:if>
 		<h2>Available Races:</h2>
-
-		<table id="raceTable" class="table">
-			<thead>
-				<tr>
-					<th>ID</th>
-					<th>Race Name</th>
-					<th>Track Name</th>
-					<th>Race Date</th>
-					<sec:authorize access="hasRole('ADMIN')">
-						<th>Action</th>
-					</sec:authorize>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach var="Race" items="${listRaces}">
+		<div class="container">
+			<table id="raceTable" class="table table-hover table-dark">
+				<thead>
 					<tr>
-						<td>${Race.ID}</td>
-						<td><a style="color: black;" title="Click For Details"
-							href="get?ID=${Race.ID}">${Race.raceName}</a></td>
-						<td>${Race.trackName}</td>
-						<td>${Race.raceDate}</td>
-
+						<th>ID</th>
+						<th>Race Name</th>
+						<th>Track Name</th>
+						<th>Race Date</th>
 						<sec:authorize access="hasRole('ADMIN')">
-							<td><a style="font-weight: bold; color: MediumSeaGreen;"
-								href="edit?ID=${Race.ID}" title="Click To Edit Race">Edit</a>&nbsp;&nbsp;|
-								&nbsp;&nbsp; <a style="font-weight: bold; color: red;"
-								href="delete?ID=${Race.ID}"
-								onclick="return confirm('Please Confirm Deletion')"
-								title="Click To Delete">Delete</a></td>
+							<th>Action</th>
 						</sec:authorize>
 					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
-
-		<br>
-		<sec:authorize access="hasRole('ADMIN')">
-			<h2>Add New Race:</h2>
-			<form action="add" id="addRace">
-				<table>
-					<thead>
+				</thead>
+				<tbody>
+					<c:forEach var="Race" items="${listRaces}">
 						<tr>
-							<th>Race Name</th>
-							<th>Track Name</th>
-							<th>Date</th>
-							<th>Add</th>
-						</tr>
-					</thead>
+							<td>${Race.ID}</td>
+							<td><a style="color: white;" title="Click For Details"
+								href="get?ID=${Race.ID}">${Race.raceName}</a></td>
+							<td>${Race.trackName}</td>
+							<td>${Race.raceDate}</td>
 
-					<tbody>
-						<tr>
-							<td><input type="text" name="raceName" id="raceName"
-								required="" title="Enter Race Name"
-								oninvalid="setCustomValidity('Please Enter Race Name ')"
-								onchange="try{setCustomValidity('')}catch(e){}" />
-							<td><input type="text" name="trackName" id="trackName"
-								required="" title="Enter Track Name"
-								oninvalid="setCustomValidity('Please Enter Track Name ')"
-								onchange="try{setCustomValidity('')}catch(e){}" />
-							<td><input type="date" name="raceDate" id="raceDate"
-								required="" title="Enter Race Date"
-								oninvalid="setCustomValidity('Please Enter Race Date ')"
-								onchange="try{setCustomValidity('')}catch(e){}" />
-							<td><input type="submit" value="Submit New Race"
-								style="color: white; background-color: black;" /></td>
+							<sec:authorize access="hasRole('ADMIN')">
+								<td><a style="font-weight: bold; color: MediumSeaGreen;"
+									href="edit?ID=${Race.ID}" title="Click To Edit Race">Edit</a>&nbsp;&nbsp;|
+									&nbsp;&nbsp; <a style="font-weight: bold; color: red;"
+									href="delete?ID=${Race.ID}"
+									onclick="return confirm('Please Confirm Deletion')"
+									title="Click To Delete">Delete</a></td>
+							</sec:authorize>
 						</tr>
-					</tbody>
-				</table>
-			</form>
-		</sec:authorize>
+					</c:forEach>
+				</tbody>
+			</table>
+
+			<br>
+			<sec:authorize access="hasRole('ADMIN')">
+				<h2>Add New Race:</h2>
+				<form action="add" id="addRace">
+					<table class="table table-sm table-hover table-dark w-auto">
+						<thead>
+							<tr>
+								<th style="text-align: center">Race Name</th>
+								<th style="text-align: center">Track Name</th>
+								<th style="text-align: center">Date</th>
+							</tr>
+						</thead>
+
+						<tbody>
+							<tr>
+								<td style="text-align: center; background-color: black;"><input
+									type="text" name="raceName" id="raceName" required=""
+									title="Enter Race Name" placeholder="Race Name"
+									oninvalid="setCustomValidity('Please Enter Race Name ')"
+									onchange="try{setCustomValidity('')}catch(e){}" />
+								<td style="text-align: center; background-color: black;"><input
+									type="text" name="trackName" id="trackName" required=""
+									title="Enter Track Name" placeholder="Track Name"
+									oninvalid="setCustomValidity('Please Enter Track Name ')"
+									onchange="try{setCustomValidity('')}catch(e){}" />
+								<td style="text-align: center; background-color: black;"><input
+									type="date" name="raceDate" id="raceDate" required=""
+									title="Enter Race Date"
+									oninvalid="setCustomValidity('Please Enter Race Date ')"
+									onchange="try{setCustomValidity('')}catch(e){}" />
+							</tr>
+						</tbody>
+					</table>
+					<input type="submit" value="Submit New Race" class="btn btn-dark"
+						style="background-color: black; border-color: white;" />
+				</form>
+			</sec:authorize>
+		</div>
 	</div>
 
 	<!-- jQuery js-->
@@ -129,24 +150,24 @@
 
 
 
-		<div id="myModal" class="modal fade">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title">Site Guidelines</h5>
-					</div>
-					<div class="modal-body">
-						<p>Do you consent to following website guidelines?</p>
+	<div id="myModal" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div style="background-color: black; color: white"
+					class="modal-header">
+					<h5 class="modal-title">Site Guidelines</h5>
+				</div>
+				<div style="background-color: gray;" class="modal-body">
+					<p>Do you consent to following website guidelines?</p>
 
-						<div style="text-align: center;">
-							<button type="button"
-								style="background-color: black; color: white"
-								class="btn btn-default" data-dismiss="modal">Yes,
-								Contiue To Site</button>
-							&nbsp;&nbsp;&nbsp; <a style="color: black;"
-								href="${pageContext.request.contextPath}/logout">No, Sign
-								Out</a>
-						
+					<div style="text-align: center;">
+						<button type="button"
+							style="background-color: black; border-color: white; color: white"
+							class="btn btn-default" data-dismiss="modal">Yes,
+							Contiue To Site</button>
+						&nbsp;&nbsp;&nbsp; <a style="color: black;"
+							href="${pageContext.request.contextPath}/logout">No, Sign Out</a>
+
 					</div>
 				</div>
 			</div>
@@ -156,14 +177,19 @@
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$('#raceTable').DataTable({})
-	 			$('#myModal').modal({
-    		backdrop: 'static',
-    		keyboard: false
-		}
-		if (sessionStorage.getItem('#myModal') !== 'true') {
+		
+			
+			if ($.cookie('checkModal') == null) {
 				$('#myModal').modal('show');
-				sessionStorage.setItem('#myModal', 'true');
-			} 
+				$.cookie('checkModal', '1');
+			}
+
+			$('#myModal').modal({
+				backdrop : 'static',
+				keyboard : false
+			});
+
+	
 
 		});
 	</script>
