@@ -1,7 +1,5 @@
 package com.raceassistant.RaceAssistant.sec;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.security.authentication.event.AuthenticationSuccessEvent;
@@ -15,12 +13,11 @@ public class AuthenticationSuccessListener implements ApplicationListener<Authen
 
 	@Autowired
 	UserService userService;
-
+	
 	@Override
 	public void onApplicationEvent(AuthenticationSuccessEvent event) {
 
 		User user = userService.findByName(event.getAuthentication().getName());
-
 		user.setFailedLoginAttempts(0);
 		userService.loginService(user);
 	}
