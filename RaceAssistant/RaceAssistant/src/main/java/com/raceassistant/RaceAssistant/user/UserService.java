@@ -2,7 +2,7 @@ package com.raceassistant.RaceAssistant.user;
 
 public interface UserService {
 
-	void changePassword(User user, String newPassword, String confirmNewPassword);
+	void changePassword(User user, String newPassword);
 
 	void save(User user);
 

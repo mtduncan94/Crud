@@ -10,14 +10,13 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserRepository userRepository;
 	@Autowired
-	PasswordEncoder passwordEncoder;
+	PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
 	@Override
 	public void save(User user) {
 		user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
-		user.setPasswordConfirm(new BCryptPasswordEncoder().encode(user.getPasswordConfirm()));
 		user.setStatus(true);
-
+		user.setFile(user.getFile());
 		if (user.getRole() == null) {
 			user.setRole("USER");
 		}
@@ -25,6 +24,7 @@ public class UserServiceImpl implements UserService {
 		userRepository.save(user);
 	}
 
+	@Override
 	public void loginService(User user) {
 		userRepository.save(user);
 	}
@@ -34,10 +34,10 @@ public class UserServiceImpl implements UserService {
 		return userRepository.findByName(username);
 	}
 
-	public void changePassword(User user, String newPassword, String confirmNewPassword) {
+	@Override
+	public void changePassword(User user, String newPassword) {
 		String encodedPassword = passwordEncoder.encode(newPassword);
 		user.setPassword(encodedPassword);
-		user.setPasswordConfirm(passwordEncoder.encode(confirmNewPassword));
 
 		userRepository.save(user);
 	}

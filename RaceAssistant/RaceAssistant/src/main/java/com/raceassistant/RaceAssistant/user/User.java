@@ -1,10 +1,14 @@
 package com.raceassistant.RaceAssistant.user;
 
+import java.io.File;
+import java.io.InputStream;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 
 @Entity
@@ -19,13 +23,14 @@ public class User {
 	private String name;
 	@Column(name = "password")
 	private String password;
-	@Column(name= "password_confirm")
-	private String passwordConfirm;
 	@Column(name = "role")
 	private String role;
 	@Column(name = "status")
 	private boolean status;
 	private int failedLoginAttempts;
+	@Lob
+	@Column(name="resume")
+	private File file;
 
 	public User(int iD, String name, String password, String role, boolean status) {
 		super();
@@ -73,14 +78,6 @@ public class User {
 		this.password = password;
 	}
 
-	public String getPasswordConfirm() {
-		return passwordConfirm;
-	}
-
-	public void setPasswordConfirm(String passwordConfirm) {
-		this.passwordConfirm = passwordConfirm;
-	}
-
 	public String getRole() {
 		return role;
 	}
@@ -105,10 +102,20 @@ public class User {
 		this.failedLoginAttempts = failedLoginAttempts;
 	}
 
+	
+	
+	public File getFile() {
+		return file;
+	}
+
+	public void setFile(File file) {
+		this.file = file;
+	}
+
 	@Override
 	public String toString() {
 		return "User [ID=" + ID + ", name=" + name + ", password=" + password + ", role=" + role + ", status=" + status
-				+ "]";
+				+", attempts="+failedLoginAttempts+ "]";
 	}
 
 }
