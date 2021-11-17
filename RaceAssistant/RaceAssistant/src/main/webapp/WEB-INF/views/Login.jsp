@@ -36,7 +36,7 @@ input {
 </head>
 <body style="background-color: gray; margin: 0; padding: 0;">
 	<div class="container">
-		<form class="form-signin" method="post" action="/RaceAssistant/login"
+		<form class="form-signin" method="post" action="login"
 			id="form">
 			<h2 class="form-signin-heading">Please sign in</h2>
 			<c:if test="${message != null}">
