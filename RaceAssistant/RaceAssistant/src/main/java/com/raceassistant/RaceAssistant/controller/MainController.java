@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mobile.device.Device;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -44,11 +45,31 @@ public class MainController {
 
 	// home page controller
 	@RequestMapping(value = "/")
-	public ModelAndView userView(ModelAndView model) {
+	public ModelAndView userView(ModelAndView model, Device device) {
 
+		  String deviceType = "browser";
+	        String platform = "browser";
+	        String viewName = "index";
+		
+	        if (device.isNormal()) {
+	            deviceType = "browser";
+	        } else if (device.isMobile()) {
+	            deviceType = "mobile";
+	            viewName = "mobile/index";
+	        } else if (device.isTablet()) {
+	            deviceType = "tablet";
+	            viewName = "tablet/index";
+	        }
+	        
+	        platform = device.getDevicePlatform().name();
+	        
+	        if (platform.equalsIgnoreCase("UNKNOWN")) {
+	            platform = "browser";
+	        }
+	        
 		List<RaceDetails> listRaces = rs.listAll();
 		model.addObject("listRaces", listRaces);
-		model.setViewName("index");
+		model.setViewName("viewName");
 		return model;
 	}
 
@@ -125,7 +146,7 @@ public class MainController {
 		userValidator.validate(userForm, bindingResult);
 
 		if (bindingResult.hasErrors()) {
-			model.addAttribute("message", "Registration Not Successful, Please Try Again");
+			model.addAttribute("message", "Registration Unsuccessful, Please Try Again");
 			return "registration";
 		}
 
@@ -170,7 +191,7 @@ public class MainController {
 
 		}
 
-		userService.changePassword(user, request.getParameter("newPassword"), request.getParameter("passwordConfirm"));
+		userService.changePassword(user, request.getParameter("newPassword"));
 		ra.addFlashAttribute("message", "Password Successfully Changed");
 		return "redirect:/accountdetails";
 	}
