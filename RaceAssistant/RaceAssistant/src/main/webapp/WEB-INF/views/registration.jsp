@@ -48,21 +48,18 @@ input {
 			<spring:bind path="password">
 				<div style="color: red; font-weight: bold;"
 					class="form-group ${status.error ? 'has-error' : ''}">
-					<form:input style="background-color:black" type="password"
+					<form:input style="background-color:black" type="password" id="newPassword"
 						path="password" class="form-control" placeholder="Password"></form:input>
 					<form:errors path="password"></form:errors>
 				</div>
 			</spring:bind>
 
-			<spring:bind path="passwordConfirm">
-				<div style="color: red; font-weight: bold;"
-					class="form-group ${status.error ? 'has-error' : ''}">
-					<form:input style="background-color:black" type="password"
-						path="passwordConfirm" class="form-control"
-						placeholder="Confirm Your Password"></form:input>
-					<form:errors path="passwordConfirm"></form:errors>
-				</div>
-			</spring:bind>
+			<input oninput="checkPasswordMatch(this);"
+				style="background-color:black" type="password"
+				class="form-control" name="passwordConfirm"
+				placeholder="Confirm Your Password"></input>
+
+			<input class="form-control" style="background-color:black" placeholder="Add Resume(Optional)" type="file" />
 
 			<button style="background-color: black; border-color: white;"
 				class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
@@ -71,6 +68,19 @@ input {
 		<a style="text-align: center; color: black; font-weight: bold;"
 			href="home" title="Go To Login">Cancel</a>
 	</div>
+
+	<script>
+		function checkPasswordMatch(fieldConfirmPassword) {
+			if (fieldConfirmPassword.value != $("#newPassword").val()) {
+				fieldConfirmPassword
+						.setCustomValidity("Passwords do not match!");
+
+			} else {
+				fieldConfirmPassword.setCustomValidity("");
+			}
+
+		}
+	</script>
 
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
