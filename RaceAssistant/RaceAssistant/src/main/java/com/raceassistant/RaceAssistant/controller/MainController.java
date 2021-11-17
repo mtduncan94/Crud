@@ -69,7 +69,7 @@ public class MainController {
 	        
 		List<RaceDetails> listRaces = rs.listAll();
 		model.addObject("listRaces", listRaces);
-		model.setViewName("viewName");
+		model.setViewName(viewName);
 		return model;
 	}
 
